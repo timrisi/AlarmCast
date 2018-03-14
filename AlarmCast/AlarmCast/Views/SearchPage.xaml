@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<view:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlarmCast.Views.SearchPage"
+			 xmlns:view="clr-namespace:AlarmCast.Views;assembly=AlarmCast">
+	<view:BasePage.Content>
+        <StackLayout>
+			<SearchBar Placeholder="Search for podcast" Text="{Binding SearchText, Mode=TwoWay}" />
+			<ListView ItemsSource="{Binding Podcasts}"
+					  HasUnevenRows="true"
+					  SelectedItem="{Binding SelectedPodcast}">
+				<!--ItemSelected="Podcast_Selected"-->
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ImageCell Text="{Binding Title}" ImageSource="{Binding ImageUrl}"/>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+    </view:BasePage.Content>
+</view:BasePage>

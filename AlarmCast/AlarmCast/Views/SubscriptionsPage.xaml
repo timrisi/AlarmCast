@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlarmCast.Views.SubscriptionsPage"
+              Title="{Binding Title}"
+             x:Name="BrowseSubscriptionsPage"
+		     xmlns:local="clr-namespace:AlarmCast.Views;assembly=AlarmCast">
+	<local:BasePage.ToolbarItems>
+		<ToolbarItem Text="+" Command="{Binding AddPodcast}" />
+	</local:BasePage.ToolbarItems>
+	<local:BasePage.Content>
+		<StackLayout>
+			<ListView x:Name="ItemsListView" 
+                ItemsSource="{Binding Podcasts}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+				 SelectedItem="{Binding SelectedItem}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Padding="10">
+								<Label Text="{Binding Text}" 
+                       LineBreakMode="NoWrap" 
+                       Style="{DynamicResource ListItemTextStyle}" 
+                       FontSize="16" />
+								<Label Text="{Binding Description}" 
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="13" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</local:BasePage.Content>
+</local:BasePage>
